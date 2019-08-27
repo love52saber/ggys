@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.order.mapper.MerchantBaseOrderMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.order.entity.MerchantBaseOrderDO">
+
+      <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="order_no" property="orderNo" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="order_date" property="orderDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="order_fee" property="orderFee" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result column="order_actual_fee" property="orderActualFee" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result column="pay_type" property="payType" javaType="net.seocoo.ggys.module.order.constants.OrderPayTypeEnum" jdbcType="VARCHAR" />
+      <result column="finished_user_id" property="finishedUserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="finished_date" property="finishedDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="order_type" property="orderType" javaType="net.seocoo.ggys.module.order.constants.OrderTypeEnum" jdbcType="VARCHAR" />
+      <result column="pay_date" property="payDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="order_state" property="orderState" javaType="net.seocoo.ggys.module.order.constants.OrderStateEnum" jdbcType="VARCHAR" />
+      <result column="order_pay_actual_fee" property="orderPayActualFee" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result column="order_coupon_fee" property="orderCouponFee" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result column="transaction_no" property="transactionNo" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="order_user_id" property="orderUserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="merchant_id" property="merchantId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="take_out_order_id" property="takeOutOrderId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="groupon_order_id" property="grouponOrderId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="uuid" property="uuid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="can_deleted" property="canDeleted" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_no, order_date, order_fee, order_actual_fee, pay_type, finished_user_id, 
+    finished_date, order_type, pay_date, order_state, order_pay_actual_fee, order_coupon_fee, 
+    transaction_no, order_user_id, merchant_id, take_out_order_id, groupon_order_id, 
+    uuid, can_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from merchant_base_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from merchant_base_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="net.seocoo.ggys.module.order.entity.MerchantBaseOrderDO">
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into merchant_base_order (id, order_no, order_date,
+      order_fee, order_actual_fee, pay_type, 
+      finished_user_id, finished_date, order_type, 
+      pay_date, order_state, order_pay_actual_fee, 
+      order_coupon_fee, transaction_no, order_user_id, 
+      merchant_id, take_out_order_id, groupon_order_id, 
+      uuid, can_deleted)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{orderDate,jdbcType=TIMESTAMP}, 
+      #{orderFee,jdbcType=DECIMAL}, #{orderActualFee,jdbcType=DECIMAL}, #{payType,jdbcType=VARCHAR}, 
+      #{finishedUserId,jdbcType=INTEGER}, #{finishedDate,jdbcType=TIMESTAMP}, #{orderType,jdbcType=VARCHAR}, 
+      #{payDate,jdbcType=TIMESTAMP}, #{orderState,jdbcType=VARCHAR}, #{orderPayActualFee,jdbcType=DECIMAL}, 
+      #{orderCouponFee,jdbcType=DECIMAL}, #{transactionNo,jdbcType=VARCHAR}, #{orderUserId,jdbcType=INTEGER}, 
+      #{merchantId,jdbcType=INTEGER}, #{takeOutOrderId,jdbcType=INTEGER}, #{grouponOrderId,jdbcType=INTEGER}, 
+      #{uuid,jdbcType=VARCHAR}, #{canDeleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="net.seocoo.ggys.module.order.entity.MerchantBaseOrderDO">
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into merchant_base_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="orderDate != null">
+        order_date,
+      </if>
+      <if test="orderFee != null">
+        order_fee,
+      </if>
+      <if test="orderActualFee != null">
+        order_actual_fee,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="finishedUserId != null">
+        finished_user_id,
+      </if>
+      <if test="finishedDate != null">
+        finished_date,
+      </if>
+      <if test="orderType != null">
+        order_type,
+      </if>
+      <if test="payDate != null">
+        pay_date,
+      </if>
+      <if test="orderState != null">
+        order_state,
+      </if>
+      <if test="orderPayActualFee != null">
+        order_pay_actual_fee,
+      </if>
+      <if test="orderCouponFee != null">
+        order_coupon_fee,
+      </if>
+      <if test="transactionNo != null">
+        transaction_no,
+      </if>
+      <if test="orderUserId != null">
+        order_user_id,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="takeOutOrderId != null">
+        take_out_order_id,
+      </if>
+      <if test="grouponOrderId != null">
+        groupon_order_id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderFee != null">
+        #{orderFee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderActualFee != null">
+        #{orderActualFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="finishedUserId != null">
+        #{finishedUserId,jdbcType=INTEGER},
+      </if>
+      <if test="finishedDate != null">
+        #{finishedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="payDate != null">
+        #{payDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderState != null">
+        #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPayActualFee != null">
+        #{orderPayActualFee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderCouponFee != null">
+        #{orderCouponFee,jdbcType=DECIMAL},
+      </if>
+      <if test="transactionNo != null">
+        #{transactionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderUserId != null">
+        #{orderUserId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="takeOutOrderId != null">
+        #{takeOutOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="grouponOrderId != null">
+        #{grouponOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.order.entity.MerchantBaseOrderDO">
+    update merchant_base_order
+    <set>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        order_date = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderFee != null">
+        order_fee = #{orderFee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderActualFee != null">
+        order_actual_fee = #{orderActualFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="finishedUserId != null">
+        finished_user_id = #{finishedUserId,jdbcType=INTEGER},
+      </if>
+      <if test="finishedDate != null">
+        finished_date = #{finishedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderType != null">
+        order_type = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="payDate != null">
+        pay_date = #{payDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderState != null">
+        order_state = #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPayActualFee != null">
+        order_pay_actual_fee = #{orderPayActualFee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderCouponFee != null">
+        order_coupon_fee = #{orderCouponFee,jdbcType=DECIMAL},
+      </if>
+      <if test="transactionNo != null">
+        transaction_no = #{transactionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderUserId != null">
+        order_user_id = #{orderUserId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="takeOutOrderId != null">
+        take_out_order_id = #{takeOutOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="grouponOrderId != null">
+        groupon_order_id = #{grouponOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.order.entity.MerchantBaseOrderDO">
+    update merchant_base_order
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      order_date = #{orderDate,jdbcType=TIMESTAMP},
+      order_fee = #{orderFee,jdbcType=DECIMAL},
+      order_actual_fee = #{orderActualFee,jdbcType=DECIMAL},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      finished_user_id = #{finishedUserId,jdbcType=INTEGER},
+      finished_date = #{finishedDate,jdbcType=TIMESTAMP},
+      order_type = #{orderType,jdbcType=VARCHAR},
+      pay_date = #{payDate,jdbcType=TIMESTAMP},
+      order_state = #{orderState,jdbcType=VARCHAR},
+      order_pay_actual_fee = #{orderPayActualFee,jdbcType=DECIMAL},
+      order_coupon_fee = #{orderCouponFee,jdbcType=DECIMAL},
+      transaction_no = #{transactionNo,jdbcType=VARCHAR},
+      order_user_id = #{orderUserId,jdbcType=INTEGER},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      take_out_order_id = #{takeOutOrderId,jdbcType=INTEGER},
+      groupon_order_id = #{grouponOrderId,jdbcType=INTEGER},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <!--自定义sql-->
+  <delete id="delete" parameterType="java.lang.Integer">
+    update  merchant_base_order
+    set can_deleted = 'Y'
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <select id="listByQuery" parameterType="net.seocoo.ggys.core.base.BaseQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from merchant_base_order
+    <include refid="Base_Where" />
+
+  </select>
+
+  <select id="count" parameterType="net.seocoo.ggys.core.base.BaseQuery" resultType="java.lang.Integer">
+    select count(*)
+    from merchant_base_order
+    <include refid="Base_Where"/>
+  </select>
+
+
+
+  <sql id="Base_Where">
+    where 1=1 and can_deleted = 'N'
+    <if test="id != null">
+      and  id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="uuid != null">
+      and  uuid = #{uuid,jdbcType=CHAR}
+    </if>
+    <if test="merchantId != null">
+      and merchant_id = #{merchantId,jdbcType=INTEGER}
+    </if>
+    <if test="orderUserId != null">
+      and order_user_id = #{orderUserId,jdbcType=INTEGER}
+    </if>
+    <if test="startDate !=null ">
+      and  <![CDATA[ create_date >= #{startDate,jdbcType=TIMESTAMP}  ]]>
+    </if>
+    <if test="endDate != null">
+      and  <![CDATA[ create_date <= #{endDate,jdbcType=TIMESTAMP}  ]]>
+    </if>
+
+
+  </sql>
+
+
+</mapper>

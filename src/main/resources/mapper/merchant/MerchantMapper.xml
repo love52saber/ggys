@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.merchant.mapper.MerchantMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.merchant.entity.MerchantDO">
+      <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="uuid" property="uuid" javaType="java.lang.String" jdbcType="CHAR" />
+      <result column="simple_name" property="simpleName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="name"  property="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="merchant_no" property="merchantNo" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="province_id" property="provinceId" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="city_id" property="cityId" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="county_id" property="countyId" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="business_area_id" property="businessAreaId" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="province_name" property="provinceName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="county_name" property="countyName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="city_name" property="cityName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="business_area_name" property="businessAreaName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="address" property="address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="lat" property="lat" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <result column="lon" property="lon" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <result column="link_phone" property="linkPhone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="link_name" property="linkName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="logo_url" property="logoUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="merchant_function" property="merchantFunction" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="merchant_user_id" property="merchantUserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="manage_user_id" property="manageUserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="shop_no" property="shopNo" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="create_date" property="createDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="create_user_id" property="createUserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="update_date"  property="updateDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="update_user_id" property="updateUserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="can_deleted" property="canDeleted" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uuid, simple_name, name, merchant_no, province_id, city_id, county_id, business_area_id,
+    province_name, city_name, county_name, business_area_name,
+    address, lat, lon, link_phone, link_name, logo_url, merchant_function, merchant_user_id,
+    manage_user_id, shop_no, create_date, create_user_id, update_date, update_user_id, 
+    can_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from merchant
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from merchant
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="net.seocoo.ggys.module.merchant.entity.MerchantDO">
+    insert into merchant (id, uuid, simple_name, 
+      name, merchant_no, province_id, 
+      city_id, county_id, business_area_id,
+      city_name,county_name,business_area_name,province_name,
+      address, lat, lon, link_phone,
+      link_name, logo_url, merchant_function, 
+      merchant_user_id, manage_user_id, shop_no, 
+      create_date, create_user_id, update_date, 
+      update_user_id, can_deleted)
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=CHAR}, #{simpleName,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{merchantNo,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}, 
+      #{cityId,jdbcType=INTEGER}, #{countyId,jdbcType=INTEGER}, #{businessAreaId,jdbcType=INTEGER},
+       #{provinceName,jdbcType=VARCHAR},#{cityName,jdbcType=VARCHAR}, #{countyName,jdbcType=VARCHAR}, #{businessAreaName,jdbcType=VARCHAR},
+      #{address,jdbcType=VARCHAR}, #{lat,jdbcType=DOUBLE}, #{lon,jdbcType=DOUBLE}, #{linkPhone,jdbcType=VARCHAR},
+      #{linkName,jdbcType=VARCHAR}, #{logoUrl,jdbcType=VARCHAR}, #{merchantFunction,jdbcType=VARCHAR},
+      #{merchantUserId,jdbcType=INTEGER}, #{manageUserId,jdbcType=INTEGER}, #{shopNo,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{updateUserId,jdbcType=INTEGER}, #{canDeleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="net.seocoo.ggys.module.merchant.entity.MerchantDO">
+    insert into merchant
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="simpleName != null">
+        simple_name,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="merchantNo != null">
+        merchant_no,
+      </if>
+      <if test="provinceId != null">
+        province_id,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="countyId != null">
+        county_id,
+      </if>
+      <if test="businessAreaId != null">
+        business_area_id,
+      </if>
+      <if test="provinceName != null">
+        province_name,
+      </if>
+      <if test="cityName != null">
+        city_name,
+      </if>
+      <if test="countyName != null">
+        county_name,
+      </if>
+      <if test="businessAreaName != null">
+        business_area_name,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+      <if test="lon != null">
+        lon,
+      </if>
+      <if test="linkPhone != null">
+        link_phone,
+      </if>
+      <if test="linkName != null">
+        link_name,
+      </if>
+      <if test="logoUrl != null">
+        logo_url,
+      </if>
+      <if test="merchantFunction != null">
+        merchant_function,
+      </if>
+      <if test="merchantUserId != null">
+        merchant_user_id,
+      </if>
+      <if test="manageUserId != null">
+        manage_user_id,
+      </if>
+      <if test="shopNo != null">
+        shop_no,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="simpleName != null">
+        #{simpleName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantNo != null">
+        #{merchantNo,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null">
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="countyId != null">
+        #{countyId,jdbcType=INTEGER},
+      </if>
+      <if test="businessAreaId != null">
+        #{businessAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessAreaName != null">
+        #{businessAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="lon != null">
+        #{lon,jdbcType=DOUBLE},
+      </if>
+      <if test="linkPhone != null">
+        #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkName != null">
+        #{linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null">
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantFunction != null">
+        #{merchantFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantUserId != null">
+        #{merchantUserId,jdbcType=INTEGER},
+      </if>
+      <if test="manageUserId != null">
+        #{manageUserId,jdbcType=INTEGER},
+      </if>
+      <if test="shopNo != null">
+        #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.merchant.entity.MerchantDO">
+    update merchant
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="simpleName != null">
+        simple_name = #{simpleName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantNo != null">
+        merchant_no = #{merchantNo,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null">
+        province_id = #{provinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="countyId != null">
+        county_id = #{countyId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessAreaId != null">
+        business_area_id = #{businessAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        province_name=#{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        city_name=#{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        county_name=#{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessAreaName != null">
+        business_area_name=#{businessAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="lon != null">
+        lon = #{lon,jdbcType=DOUBLE},
+      </if>
+      <if test="linkPhone != null">
+        link_phone = #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkName != null">
+        link_name = #{linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null">
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantFunction != null">
+        merchant_function = #{merchantFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantUserId != null">
+        merchant_user_id = #{merchantUserId,jdbcType=INTEGER},
+      </if>
+      <if test="manageUserId != null">
+        manage_user_id = #{manageUserId,jdbcType=INTEGER},
+      </if>
+      <if test="shopNo != null">
+        shop_no = #{shopNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.merchant.entity.MerchantDO">
+    update merchant
+    set uuid = #{uuid,jdbcType=CHAR},
+      simple_name = #{simpleName,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      merchant_no = #{merchantNo,jdbcType=INTEGER},
+      province_id = #{provinceId,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      county_id = #{countyId,jdbcType=VARCHAR},
+      business_area_id = #{businessAreaId,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      county_name = #{countyName,jdbcType=VARCHAR},
+      business_area_name = #{businessAreaName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      lat = #{lat,jdbcType=DOUBLE},
+      lon = #{lon,jdbcType=DOUBLE},
+      link_phone = #{linkPhone,jdbcType=VARCHAR},
+      link_name = #{linkName,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      merchant_function = #{merchantFunction,jdbcType=VARCHAR},
+      merchant_user_id = #{merchantUserId,jdbcType=INTEGER},
+      manage_user_id = #{manageUserId,jdbcType=INTEGER},
+      shop_no = #{shopNo,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=INTEGER},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <!--自定义sql-->
+  <delete id="delete" parameterType="java.lang.Integer">
+    update  merchant
+    set can_deleted = 'Y'
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <select id="list" parameterType="net.seocoo.ggys.core.base.BaseQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from merchant
+    <include refid="Base_Where" />
+    <if test="orderBy != null and orderBy != ''">
+      order by ${orderBy}
+    </if>
+  </select>
+
+  <select id="count" parameterType="net.seocoo.ggys.core.base.BaseQuery" resultType="java.lang.Integer">
+    select count(*)
+    from merchant
+    <include refid="Base_Where"/>
+  </select>
+
+  <select id="get" parameterType="net.seocoo.ggys.core.base.BaseQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from merchant
+    <include refid="Base_Where" />
+  </select>
+
+  <select id="getFunction" parameterType="java.lang.Integer" resultType="java.lang.String">
+    select
+    merchant_function
+    from merchant
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <sql id="Base_Where">
+    where 1=1 and can_deleted = 'N'
+    <if test="id != null">
+      and  id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="uuid != null">
+      and  uuid = #{uuid,jdbcType=CHAR}
+    </if>
+    <if test="name != null">
+      and  name like concat('%',#{name,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="provinceId != null">
+      and  province_id = #{provinceId,jdbcType=VARCHAR}
+    </if>
+    <if test="cityId != null">
+      and  city_id = #{cityId,jdbcType=VARCHAR}
+    </if>
+    <if test="countyId != null">
+      and  county_id = #{countyId,jdbcType=VARCHAR}
+    </if>
+    <if test="businessAreaId != null">
+      and  business_area_id = #{businessAreaId,jdbcType=VARCHAR}
+    </if>
+    <if test="merchantUserId != null">
+      and  merchant_user_id = #{merchantUserId,jdbcType=INTEGER}
+    </if>
+    <if test="manageUserId != null">
+      and  manage_user_id = #{manageUserId,jdbcType=INTEGER}
+    </if>
+    <if test="startDate !=null ">
+      and  <![CDATA[ create_date >= #{startDate,jdbcType=TIMESTAMP}  ]]>
+    </if>
+    <if test="endDate != null">
+      and  <![CDATA[ create_date <= #{endDate,jdbcType=TIMESTAMP}  ]]>
+    </if>
+    <if test="idList !=null and  idList.size() > 0 ">
+      and id in
+      <foreach collection="idList" item="id" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
+    </if>
+
+  </sql>
+
+
+
+</mapper>

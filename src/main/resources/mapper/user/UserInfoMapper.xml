@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.user.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.user.entity.UserInfoDO">
+    <id property="id" column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    <result property="token" column="token" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result property="uuid" column="uuid" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result property="nickname" column="nickname" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result property="fullName" column="full_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result property="phone" column="phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result property="openId" column="open_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result property="loginName" column="login_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result property="password" column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result property="headImageUrl" column="head_image_url" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <result property="createDate" column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    <result property="updateDate" column="update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    <result property="canDeleted" column="can_deleted" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+    <result property="userRole" column="user_role" javaType="net.seocoo.ggys.core.constants.UserRoleEnum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, token, uuid, nickname, full_name, phone, open_id, login_name, password,
+    head_image_url, create_date, update_date, can_deleted, user_role
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="net.seocoo.ggys.module.user.entity.UserInfoDO">
+    insert into user_info (id, token, uuid,
+      nickname, full_name,
+      phone, open_id, login_name,
+      password, head_image_url, create_date,
+      update_date, can_deleted, user_role)
+    values (#{id,jdbcType=INTEGER}, #{token,jdbcType=VARCHAR}, #{uuid,jdbcType=VARCHAR},
+      #{nickname,jdbcType=VARCHAR}, #{fullName,jdbcType=VARCHAR},
+      #{phone,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{headImageUrl,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+      #{updateDate,jdbcType=TIMESTAMP}, #{canDeleted,jdbcType=VARCHAR}, #{userRole,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="net.seocoo.ggys.module.user.entity.UserInfoDO">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="fullName != null">
+        full_name,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="loginName != null">
+        login_name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="headImageUrl != null">
+        head_image_url,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+      <if test="userRole != null">
+        user_role,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null">
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="headImageUrl != null">
+        #{headImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="userRole != null">
+        #{userRole,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.user.entity.UserInfoDO">
+    update user_info
+    <set>
+      <if test="token != null">
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null">
+        full_name = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="headImageUrl != null">
+        head_image_url = #{headImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="userRole != null">
+        user_role = #{userRole,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.user.entity.UserInfoDO">
+    update user_info
+    set token = #{token,jdbcType=VARCHAR},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      full_name = #{fullName,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      open_id = #{openId,jdbcType=VARCHAR},
+      login_name = #{loginName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      head_image_url = #{headImageUrl,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      user_role = #{userRole,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--自定义-->
+  <sql id="Base_Where">
+    where 1=1
+    <if test="id != null">
+      and  id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="uuid != null and uuid !='' ">
+      and uuid = #{uuid,jdbcType=VARCHAR}
+    </if>
+    <if test="nickname != null and nickname != '' ">
+      and nickname like concat('%',#{nickname,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="fullName != null and fullName !='' ">
+      and full_name = #{fullName,jdbcType=VARCHAR}
+    </if>
+    <if test="phone != null and phone != '' ">
+      and phone = #{phone,jdbcType=VARCHAR}
+    </if>
+    <if test="openId != null and openId !='' ">
+      and open_id = #{openId,jdbcType=VARCHAR}
+    </if>
+    <if test="loginName != null and loginName !='' ">
+      and login_name = #{loginName,jdbcType=VARCHAR}
+    </if>
+    <if test="createDate != null ">
+      and create_date = #{createDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="canDeleted != null ">
+      and can_deleted = #{canDeleted,jdbcType=VARCHAR}
+    </if>
+    <if test="userRole != null ">
+      and user_role = #{userRole}
+    </if>
+  </sql>
+  <select id="queryUserInfoList" parameterType="net.seocoo.ggys.module.user.entity.UserInfoDO" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from user_info
+    <include refid="Base_Where"/>
+  </select>
+
+  <!--分页查询 -->
+  <select id="listByPageQuery" parameterType="net.seocoo.ggys.module.user.query.UserInfoQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    <include refid="Base_Where"/>
+    <if test="orderBy != null and orderBy != ''">
+      order by ${orderBy}
+    </if>
+  </select>
+  <!--总数-->
+  <select id="countByQuery" parameterType="net.seocoo.ggys.module.user.query.UserInfoQuery" resultType="java.lang.Integer">
+    select count(*) from user_info
+    <include refid="Base_Where"/>
+  </select>
+
+  <!--根据userId集合查询用户信息 add PanChengHao-->
+  <select id="queryUserInfoListByUserIdList" parameterType="java.util.List" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from user_info
+    WHERE 1=1
+    <if test="userIdList != null and userIdList.size >0">
+       and id in
+      <foreach collection="userIdList" index="index" item="userId" open="(" separator="," close=")">
+        #{userId}
+      </foreach>
+    </if>
+  </select>
+  <select id="queryUserInfo" parameterType="net.seocoo.ggys.module.user.entity.UserInfoDO" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from user_info
+    <include refid="Base_Where"/>
+  </select>
+
+</mapper>

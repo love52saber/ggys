@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.user.mapper.UserAddressMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.user.entity.UserAddressDO">
+      <id property="id" column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="uuid" column="uuid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="userId" column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="fullName" column="full_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="phone" column="phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="province" column="province" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="city" column="city" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="county" column="county" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="address" column="address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="sex" column="sex" javaType="net.seocoo.ggys.core.constants.SexEnum" jdbcType="VARCHAR" />
+      <result property="canDefaultAddress" column="can_default_address" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+      <result property="postalCode" column="postal_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="createDate" column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result property="updateDate" column="update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result property="canDeleted" column="can_deleted" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uuid, user_id, full_name, phone, province, city, county, address, sex, can_default_address, 
+    postal_code, create_date, update_date, can_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_address
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_address
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="net.seocoo.ggys.module.user.entity.UserAddressDO">
+    insert into user_address (id, uuid, user_id, 
+      full_name, phone, province, 
+      city, county, address, 
+      sex, can_default_address, postal_code, 
+      create_date, update_date, can_deleted
+      )
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{fullName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{canDefaultAddress,jdbcType=VARCHAR}, #{postalCode,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{canDeleted,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="net.seocoo.ggys.module.user.entity.UserAddressDO">
+    insert into user_address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="fullName != null">
+        full_name,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="county != null">
+        county,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="canDefaultAddress != null">
+        can_default_address,
+      </if>
+      <if test="postalCode != null">
+        postal_code,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="fullName != null">
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="canDefaultAddress != null">
+        #{canDefaultAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null">
+        #{postalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.user.entity.UserAddressDO">
+    update user_address
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="fullName != null">
+        full_name = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="canDefaultAddress != null">
+        can_default_address = #{canDefaultAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null">
+        postal_code = #{postalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.user.entity.UserAddressDO">
+    update user_address
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      full_name = #{fullName,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      can_default_address = #{canDefaultAddress,jdbcType=VARCHAR},
+      postal_code = #{postalCode,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+<!-- 自定义-->
+  <select id="queryAddressListByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_address
+    where user_id = #{userId,jdbcType=INTEGER} and can_deleted = "N"
+      order by can_default_address desc
+  </select>
+
+  <update id="updateNotDefaultByUserId" parameterType="net.seocoo.ggys.module.user.entity.UserAddressDO">
+    update user_address
+    <set>
+      <if test="canDefaultAddress != null">
+        can_default_address = #{canDefaultAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+
+</mapper>

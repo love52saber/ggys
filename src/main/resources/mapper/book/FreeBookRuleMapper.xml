@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.book.mapper.FreeBookRuleMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.book.entity.FreeBookRuleDO">
+      <id property="id" column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="uuid" column="uuid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="merchantId" column="merchant_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="bookStartDate" column="book_start_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result property="bookEndDate" column="book_end_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result property="maxBookCount" column="max_book_count" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="canDisplay" column="can_display" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+      <result property="manageUserId" column="manage_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="createDate" column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result property="updateDate" column="update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result property="canDeleted" column="can_deleted" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+      <result property="createUserId" column="create_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="updateUserId" column="update_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uuid, merchant_id, book_start_date, book_end_date, max_book_count, can_display, 
+    manage_user_id, create_date, update_date, can_deleted, create_user_id, update_user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from free_book_rule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from free_book_rule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.seocoo.ggys.module.book.entity.FreeBookRuleDO">
+    insert into free_book_rule (id, uuid, merchant_id, 
+      book_start_date, book_end_date, max_book_count, 
+      can_display, manage_user_id, create_date, 
+      update_date, can_deleted, create_user_id, 
+      update_user_id)
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{merchantId,jdbcType=INTEGER}, 
+      #{bookStartDate,jdbcType=TIMESTAMP}, #{bookEndDate,jdbcType=TIMESTAMP}, #{maxBookCount,jdbcType=INTEGER}, 
+      #{canDisplay,jdbcType=VARCHAR}, #{manageUserId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{canDeleted,jdbcType=VARCHAR}, #{createUserId,jdbcType=INTEGER},
+      #{updateUserId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="net.seocoo.ggys.module.book.entity.FreeBookRuleDO">
+    insert into free_book_rule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="bookStartDate != null">
+        book_start_date,
+      </if>
+      <if test="bookEndDate != null">
+        book_end_date,
+      </if>
+      <if test="maxBookCount != null">
+        max_book_count,
+      </if>
+      <if test="canDisplay != null">
+        can_display,
+      </if>
+      <if test="manageUserId != null">
+        manage_user_id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="bookStartDate != null">
+        #{bookStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookEndDate != null">
+        #{bookEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maxBookCount != null">
+        #{maxBookCount,jdbcType=INTEGER},
+      </if>
+      <if test="canDisplay != null">
+        #{canDisplay,jdbcType=VARCHAR},
+      </if>
+      <if test="manageUserId != null">
+        #{manageUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.book.entity.FreeBookRuleDO">
+    update free_book_rule
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="bookStartDate != null">
+        book_start_date = #{bookStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookEndDate != null">
+        book_end_date = #{bookEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maxBookCount != null">
+        max_book_count = #{maxBookCount,jdbcType=INTEGER},
+      </if>
+      <if test="canDisplay != null">
+        can_display = #{canDisplay,jdbcType=VARCHAR},
+      </if>
+      <if test="manageUserId != null">
+        manage_user_id = #{manageUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.book.entity.FreeBookRuleDO">
+    update free_book_rule
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      book_start_date = #{bookStartDate,jdbcType=TIMESTAMP},
+      book_end_date = #{bookEndDate,jdbcType=TIMESTAMP},
+      max_book_count = #{maxBookCount,jdbcType=INTEGER},
+      can_display = #{canDisplay,jdbcType=VARCHAR},
+      manage_user_id = #{manageUserId,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      update_user_id = #{updateUserId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--根据商家merchantId查询预约规则list -->
+  <select id="listBookRuleByMerchantId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from free_book_rule
+    where merchant_id = #{merchantId,jdbcType=INTEGER} and can_deleted = 'N'
+  </select>
+
+  <!--分页查询 -->
+  <select id="listByPageQuery" parameterType="net.seocoo.ggys.module.book.query.BookRuleQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from free_book_rule
+    where can_deleted = 'N'
+    <if test="merchantId != null">
+      and merchant_id = #{merchantId}
+    </if>
+    <if test="canDisplay != null">
+      and can_display = #{canDisplay}
+    </if>
+    <if test="orderBy != null and orderBy != ''">
+      order by ${orderBy}
+    </if>
+  </select>
+
+  <select id="countByQuery" parameterType="net.seocoo.ggys.module.book.query.BookRuleQuery" resultType="Integer">
+    select count(*) from free_book_rule
+    where can_deleted = 'N'
+    <if test="merchantId != null">
+      and merchant_id = #{merchantId}
+    </if>
+    <if test="canDisplay != null">
+      and can_display = #{canDisplay}
+    </if>
+  </select>
+
+</mapper>

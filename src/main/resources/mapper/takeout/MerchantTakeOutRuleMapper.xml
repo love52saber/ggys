@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.takeout.mapper.MerchantTakeOutRuleMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.takeout.entity.MerchantTakeOutRuleDO">
+      <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="uuid" property="uuid"  javaType="java.lang.String" jdbcType="CHAR" />
+      <result column="merchant_id" property="merchantId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="can_self_take" property="canSelfTake" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+      <result column="delivery_range" property="deliveryRange" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <result column="delivery_fee" property="deliveryFee" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result column="package_fee" property="packageFee" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result column="manage_user_id" property="manageUserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="delivery_start_date" property="deliveryStartDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="delivery_end_date" property="deliveryEndDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="rule_state" property="ruleState" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+      <result column="create_date" property="createDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="create_user_id" property="createUserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="update_date"  property="updateDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="update_user_id" property="updateUserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="can_deleted" property="canDeleted" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uuid, merchant_id, can_self_take, delivery_range, delivery_fee, package_fee, 
+    manage_user_id, delivery_start_date, delivery_end_date, rule_state, create_date, 
+    create_user_id, update_date, update_user_id, can_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from merchant_take_out_rule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from merchant_take_out_rule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.seocoo.ggys.module.takeout.entity.MerchantTakeOutRuleDO">
+    insert into merchant_take_out_rule (id, uuid, merchant_id, 
+      can_self_take, delivery_range, delivery_fee, 
+      package_fee, manage_user_id, delivery_start_date, 
+      delivery_end_date, rule_state, create_date, 
+      create_user_id, update_date, update_user_id, 
+      can_deleted)
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=CHAR}, #{merchantId,jdbcType=INTEGER}, 
+      #{canSelfTake,jdbcType=VARCHAR}, #{deliveryRange,jdbcType=DOUBLE}, #{deliveryFee,jdbcType=DECIMAL}, 
+      #{packageFee,jdbcType=DECIMAL}, #{manageUserId,jdbcType=INTEGER}, #{deliveryStartDate,jdbcType=TIMESTAMP}, 
+      #{deliveryEndDate,jdbcType=TIMESTAMP}, #{ruleState,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{createUserId,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=INTEGER}, 
+      #{canDeleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.seocoo.ggys.module.takeout.entity.MerchantTakeOutRuleDO">
+    insert into merchant_take_out_rule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="canSelfTake != null">
+        can_self_take,
+      </if>
+      <if test="deliveryRange != null">
+        delivery_range,
+      </if>
+      <if test="deliveryFee != null">
+        delivery_fee,
+      </if>
+      <if test="packageFee != null">
+        package_fee,
+      </if>
+      <if test="manageUserId != null">
+        manage_user_id,
+      </if>
+      <if test="deliveryStartDate != null">
+        delivery_start_date,
+      </if>
+      <if test="deliveryEndDate != null">
+        delivery_end_date,
+      </if>
+      <if test="ruleState != null">
+        rule_state,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="canSelfTake != null">
+        #{canSelfTake,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryRange != null">
+        #{deliveryRange,jdbcType=DOUBLE},
+      </if>
+      <if test="deliveryFee != null">
+        #{deliveryFee,jdbcType=DECIMAL},
+      </if>
+      <if test="packageFee != null">
+        #{packageFee,jdbcType=DECIMAL},
+      </if>
+      <if test="manageUserId != null">
+        #{manageUserId,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryStartDate != null">
+        #{deliveryStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryEndDate != null">
+        #{deliveryEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ruleState != null">
+        #{ruleState,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.takeout.entity.MerchantTakeOutRuleDO">
+    update merchant_take_out_rule
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="canSelfTake != null">
+        can_self_take = #{canSelfTake,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryRange != null">
+        delivery_range = #{deliveryRange,jdbcType=DOUBLE},
+      </if>
+      <if test="deliveryFee != null">
+        delivery_fee = #{deliveryFee,jdbcType=DECIMAL},
+      </if>
+      <if test="packageFee != null">
+        package_fee = #{packageFee,jdbcType=DECIMAL},
+      </if>
+      <if test="manageUserId != null">
+        manage_user_id = #{manageUserId,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryStartDate != null">
+        delivery_start_date = #{deliveryStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryEndDate != null">
+        delivery_end_date = #{deliveryEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ruleState != null">
+        rule_state = #{ruleState,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.takeout.entity.MerchantTakeOutRuleDO">
+    update merchant_take_out_rule
+    set uuid = #{uuid,jdbcType=CHAR},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      can_self_take = #{canSelfTake,jdbcType=VARCHAR},
+      delivery_range = #{deliveryRange,jdbcType=DOUBLE},
+      delivery_fee = #{deliveryFee,jdbcType=DECIMAL},
+      package_fee = #{packageFee,jdbcType=DECIMAL},
+      manage_user_id = #{manageUserId,jdbcType=INTEGER},
+      delivery_start_date = #{deliveryStartDate,jdbcType=TIMESTAMP},
+      delivery_end_date = #{deliveryEndDate,jdbcType=TIMESTAMP},
+      rule_state = #{ruleState,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=INTEGER},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--自定义sql-->
+  <delete id="delete" parameterType="java.lang.Integer">
+    update  merchant_take_out_rule
+    set can_deleted = 'Y'
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <select id="list" parameterType="net.seocoo.ggys.core.base.BaseQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from merchant_take_out_rule
+    <include refid="Base_Where" />
+
+  </select>
+
+  <select id="count" parameterType="net.seocoo.ggys.core.base.BaseQuery" resultType="java.lang.Integer">
+    select count(*)
+    from merchant_take_out_rule
+    <include refid="Base_Where"/>
+  </select>
+
+
+
+  <sql id="Base_Where">
+    where 1=1 and can_deleted = 'N'
+    <if test="id != null">
+      and  id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="uuid != null">
+      and  uuid = #{uuid,jdbcType=CHAR}
+    </if>
+    <if test="merchantId != null">
+      and merchant_id = #{merchantId,jdbcType=INTEGER}
+    </if>
+  </sql>
+
+</mapper>

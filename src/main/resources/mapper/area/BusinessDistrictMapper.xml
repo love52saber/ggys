@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.area.mapper.BusinessDistrictMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.area.entity.BusinessDistrictDO">
+      <id property="id" column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="uuid" column="uuid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="provinceName" column="province_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="cityName" column="city_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="countyName" column="county_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="name" column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="address" column="address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="provinceCode" column="province_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="cityCode" column="city_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="countyCode" column="county_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="canDeleted" column="can_deleted" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+      <result property="createUserId" column="create_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="updateUserId" column="update_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="createDate" column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result property="updateDate" column="update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uuid, province_name, city_name, county_name, name, address, province_code, city_code, 
+    county_code, can_deleted, create_user_id, update_user_id, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from business_district
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from business_district
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.seocoo.ggys.module.area.entity.BusinessDistrictDO">
+    insert into business_district (id, uuid, province_name, 
+      city_name, county_name, name, 
+      address, province_code, city_code, 
+      county_code, can_deleted, create_user_id, 
+      update_user_id, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR}, 
+      #{cityName,jdbcType=VARCHAR}, #{countyName,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{countyCode,jdbcType=VARCHAR}, #{canDeleted,jdbcType=VARCHAR}, #{createUserId,jdbcType=INTEGER}, 
+      #{updateUserId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.seocoo.ggys.module.area.entity.BusinessDistrictDO">
+    insert into business_district
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="provinceName != null">
+        province_name,
+      </if>
+      <if test="cityName != null">
+        city_name,
+      </if>
+      <if test="countyName != null">
+        county_name,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="provinceCode != null">
+        province_code,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="countyCode != null">
+        county_code,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.area.entity.BusinessDistrictDO">
+    update business_district
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        county_name = #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        county_code = #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.area.entity.BusinessDistrictDO">
+    update business_district
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      county_name = #{countyName,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      county_code = #{countyCode,jdbcType=VARCHAR},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      update_user_id = #{updateUserId,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--自定义-->
+  <!--分页查询 -->
+  <select id="listByPageQuery" parameterType="net.seocoo.ggys.module.area.query.BusinessDistrictQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from business_district
+    WHERE can_deleted = 'N'
+    <if test="provinceCode != null">
+      and province_code = #{provinceCode}
+    </if>
+    <if test="cityCode != null and cityCode != ''">
+      and city_code = #{cityCode}
+    </if>
+    <if test="countyCode != null and countyCode != ''">
+      and county_code = #{countyCode}
+    </if>
+    <if test="name != null and name != ''">
+      and name LIKE "%"#{name}"%"
+    </if>
+    <if test="startDate != null and endDate != null">
+      and create_date BETWEEN
+      #{startDate,jdbcType=TIMESTAMP} AND
+      #{endDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="orderBy != null and orderBy != ''">
+      order by ${orderBy}
+    </if>
+  </select>
+
+  <select id="countByQuery" parameterType="net.seocoo.ggys.module.area.query.BusinessDistrictQuery" resultType="Integer">
+    select count(*) from business_district
+    WHERE 1=1 and can_deleted = 'N'
+    <if test="provinceCode != null">
+      and province_code = #{provinceCode}
+    </if>
+    <if test="cityCode != null and cityCode != ''">
+      and city_code = #{cityCode}
+    </if>
+    <if test="countyCode != null and countyCode != ''">
+      and county_code = #{countyCode}
+    </if>
+    <if test="name != null and name != ''">
+      and name LIKE "%"#{name}"%"
+    </if>
+    <if test="startDate != null and endDate != null">
+      and create_date BETWEEN
+      #{startDate,jdbcType=TIMESTAMP} AND
+      #{endDate,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+</mapper>

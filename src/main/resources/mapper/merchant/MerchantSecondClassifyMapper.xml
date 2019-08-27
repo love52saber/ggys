@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.merchant.mapper.MerchantSecondClassifyMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.merchant.entity.MerchantSecondClassifyDO">
+      <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="first_classify_id" property="firstClassifyId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="second_classify_id" property="secondClassifyId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="merchant_id" property="merchantId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="create_date" property="createDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="create_user_id" property="createUserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="update_date"  property="updateDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="update_user_id" property="updateUserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="can_deleted" property="canDeleted" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,first_classify_id, second_classify_id, merchant_id, create_date, create_user_id, update_date, update_user_id,
+    can_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from merchant_second_classify
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from merchant_second_classify
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="net.seocoo.ggys.module.merchant.entity.MerchantSecondClassifyDO">
+    insert into merchant_second_classify (id,first_classify_id, second_classify_id, merchant_id,
+      create_date, create_user_id, update_date, 
+      update_user_id, can_deleted)
+    values (#{id,jdbcType=INTEGER},#{firstClassifyId,jdbcType=INTEGER}, #{secondClassifyId,jdbcType=INTEGER}, #{merchantId,jdbcType=INTEGER},
+      #{createDate,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{updateUserId,jdbcType=INTEGER}, #{canDeleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="net.seocoo.ggys.module.merchant.entity.MerchantSecondClassifyDO">
+    insert into merchant_second_classify
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="firstClassifyId != null">
+        first_classify_id,
+      </if>
+      <if test="secondClassifyId != null">
+        second_classify_id,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="firstClassifyId != null">
+        #{firstClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="secondClassifyId != null">
+        #{secondClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.merchant.entity.MerchantSecondClassifyDO">
+    update merchant_second_classify
+    <set>
+      <if test="firstClassifyId != null">
+        first_classify_id = #{firstClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="secondClassifyId != null">
+        second_classify_id = #{secondClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.merchant.entity.MerchantSecondClassifyDO">
+    update merchant_second_classify
+    set  first_classify_id = #{firstClassifyId,jdbcType=INTEGER},
+    second_classify_id = #{secondClassifyId,jdbcType=INTEGER},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=INTEGER},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <!--自定义sql-->
+  <delete id="delete" parameterType="java.lang.Integer">
+    update  merchant_second_classify
+    set can_deleted = 'Y'
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <delete id="deleteByMerchantId" parameterType="java.lang.Integer">
+    update  merchant_second_classify
+    set can_deleted = 'Y'
+    where merchant_id = #{merchantId,jdbcType=INTEGER}
+  </delete>
+
+  <select id="list" parameterType="net.seocoo.ggys.core.base.BaseQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from merchant_second_classify
+    <include refid="Base_Where" />
+
+  </select>
+
+  <sql id="Base_Where">
+    where 1=1 and can_deleted = 'N'
+    <if test="id != null">
+      and  id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="uuid != null">
+      and  uuid = #{uuid,jdbcType=CHAR}
+    </if>
+    <if test="secondClassifyId != null">
+      and second_classify_id = #{secondClassifyId,jdbcType=INTEGER}
+    </if>
+    <if test="merchantId != null">
+      and merchant_id = #{merchantId,jdbcType=INTEGER}
+    </if>
+    <if test="firstClassifyId != null">
+      and first_classify_id = #{firstClassifyId}
+    </if>
+    <if test="secondClassifyIdList!=null and secondClassifyIdList.size() > 0 ">
+      and second_classify_id in
+      <foreach collection="secondClassifyIdList" item="secondClassifyId" open="(" close=")" separator=",">
+        #{secondClassifyId}
+      </foreach>
+    </if>
+
+  </sql>
+
+  <insert id="insertBatch">
+    insert into merchant_second_classify (id, first_classify_id,second_classify_id, merchant_id,
+      create_date, create_user_id, update_date,
+      update_user_id, can_deleted)
+    values
+    <foreach collection="list" item="info" separator=",">
+      (#{info.id,jdbcType=INTEGER},#{info.firstClassifyId,jdbcType=INTEGER}, #{info.secondClassifyId,jdbcType=INTEGER}, #{info.merchantId,jdbcType=INTEGER},
+      #{info.createDate,jdbcType=TIMESTAMP}, #{info.createUserId,jdbcType=INTEGER}, #{info.updateDate,jdbcType=TIMESTAMP},
+      #{info.updateUserId,jdbcType=INTEGER}, #{info.canDeleted,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

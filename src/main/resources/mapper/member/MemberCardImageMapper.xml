@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.member.mapper.MemberCardImageMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.member.entity.MemberCardImageDO">
+      <id property="id" column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="uuid" column="uuid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="name" column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="merchantId" column="merchant_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="memberCardImageUrl" column="member_card_image_url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="memberCardDescription" column="member_card_description" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="canDeleted" column="can_deleted" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+      <result property="createDate" column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result property="updateDate" column="update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uuid, name, merchant_id, member_card_image_url, member_card_description, can_deleted, 
+    create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member_card_image
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member_card_image
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.seocoo.ggys.module.member.entity.MemberCardImageDO">
+    insert into member_card_image (id, uuid, name, 
+      merchant_id, member_card_image_url, member_card_description, 
+      can_deleted, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{merchantId,jdbcType=INTEGER}, #{memberCardImageUrl,jdbcType=VARCHAR}, #{memberCardDescription,jdbcType=VARCHAR}, 
+      #{canDeleted,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.seocoo.ggys.module.member.entity.MemberCardImageDO">
+    insert into member_card_image
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="memberCardImageUrl != null">
+        member_card_image_url,
+      </if>
+      <if test="memberCardDescription != null">
+        member_card_description,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="memberCardImageUrl != null">
+        #{memberCardImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCardDescription != null">
+        #{memberCardDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.member.entity.MemberCardImageDO">
+    update member_card_image
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="memberCardImageUrl != null">
+        member_card_image_url = #{memberCardImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="memberCardDescription != null">
+        member_card_description = #{memberCardDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.member.entity.MemberCardImageDO">
+    update member_card_image
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      member_card_image_url = #{memberCardImageUrl,jdbcType=VARCHAR},
+      member_card_description = #{memberCardDescription,jdbcType=VARCHAR},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--自定义-->
+  <!--根据merchantId查询会员卡图片和说明-->
+  <select id="selectByMerchantId" parameterType="net.seocoo.ggys.module.member.entity.MemberCardImageDO" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from member_card_image
+    <include refid="Base_Where" />
+  </select>
+
+  <!--基本查询条件-->
+  <sql id="Base_Where">
+    where can_deleted = 'N'
+    <if test="id != null">
+      and  id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="uuid != null">
+      and  uuid = #{uuid,jdbcType=VARCHAR}
+    </if>
+    <if test="merchantId != null">
+      and  merchant_id = #{merchantId,jdbcType=INTEGER}
+    </if>
+  </sql>
+</mapper>

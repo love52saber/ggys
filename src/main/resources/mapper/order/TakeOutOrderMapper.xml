@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.order.mapper.TakeOutOrderMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.order.entity.TakeOutOrderDO">
+      <id column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="remark" property="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="take_out_type" property="takeOutType" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="delivery_fee" property="deliveryFee" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result column="package_fee" property="packageFee" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result column="expect_send_date" property="expectSendDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="self_get_address" property="selfGetAddress" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="self_get_date" property="selfGetDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="self_get_phone" property="selfGetPhone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="uuid" property="uuid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="can_deleted" property="canDeleted" javaType="java.lang.String" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, remark, take_out_type, delivery_fee, package_fee, expect_send_date, self_get_address, 
+    self_get_date, self_get_phone, uuid, can_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from take_out_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from take_out_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.seocoo.ggys.module.order.entity.TakeOutOrderDO">
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into take_out_order (id, remark, take_out_type,
+      delivery_fee, package_fee, expect_send_date, 
+      self_get_address, self_get_date, self_get_phone, 
+      uuid, can_deleted)
+    values (#{id,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{takeOutType,jdbcType=VARCHAR}, 
+      #{deliveryFee,jdbcType=DECIMAL}, #{packageFee,jdbcType=DECIMAL}, #{expectSendDate,jdbcType=TIMESTAMP}, 
+      #{selfGetAddress,jdbcType=VARCHAR}, #{selfGetDate,jdbcType=TIMESTAMP}, #{selfGetPhone,jdbcType=VARCHAR}, 
+      #{uuid,jdbcType=VARCHAR}, #{canDeleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.seocoo.ggys.module.order.entity.TakeOutOrderDO">
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into take_out_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="takeOutType != null">
+        take_out_type,
+      </if>
+      <if test="deliveryFee != null">
+        delivery_fee,
+      </if>
+      <if test="packageFee != null">
+        package_fee,
+      </if>
+      <if test="expectSendDate != null">
+        expect_send_date,
+      </if>
+      <if test="selfGetAddress != null">
+        self_get_address,
+      </if>
+      <if test="selfGetDate != null">
+        self_get_date,
+      </if>
+      <if test="selfGetPhone != null">
+        self_get_phone,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="takeOutType != null">
+        #{takeOutType,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryFee != null">
+        #{deliveryFee,jdbcType=DECIMAL},
+      </if>
+      <if test="packageFee != null">
+        #{packageFee,jdbcType=DECIMAL},
+      </if>
+      <if test="expectSendDate != null">
+        #{expectSendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="selfGetAddress != null">
+        #{selfGetAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="selfGetDate != null">
+        #{selfGetDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="selfGetPhone != null">
+        #{selfGetPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.order.entity.TakeOutOrderDO">
+    update take_out_order
+    <set>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="takeOutType != null">
+        take_out_type = #{takeOutType,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryFee != null">
+        delivery_fee = #{deliveryFee,jdbcType=DECIMAL},
+      </if>
+      <if test="packageFee != null">
+        package_fee = #{packageFee,jdbcType=DECIMAL},
+      </if>
+      <if test="expectSendDate != null">
+        expect_send_date = #{expectSendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="selfGetAddress != null">
+        self_get_address = #{selfGetAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="selfGetDate != null">
+        self_get_date = #{selfGetDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="selfGetPhone != null">
+        self_get_phone = #{selfGetPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.order.entity.TakeOutOrderDO">
+    update take_out_order
+    set remark = #{remark,jdbcType=VARCHAR},
+      take_out_type = #{takeOutType,jdbcType=VARCHAR},
+      delivery_fee = #{deliveryFee,jdbcType=DECIMAL},
+      package_fee = #{packageFee,jdbcType=DECIMAL},
+      expect_send_date = #{expectSendDate,jdbcType=TIMESTAMP},
+      self_get_address = #{selfGetAddress,jdbcType=VARCHAR},
+      self_get_date = #{selfGetDate,jdbcType=TIMESTAMP},
+      self_get_phone = #{selfGetPhone,jdbcType=VARCHAR},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

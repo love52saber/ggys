@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.goods.mapper.MerchantBaseGoodsMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.goods.entity.MerchantBaseGoodsDO">
+      <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="uuid" property="uuid" javaType="java.lang.String" jdbcType="CHAR" />
+      <result column="merchant_id" property="merchantId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="name"  property="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="state" property="state" javaType="net.seocoo.ggys.module.goods.constans.GoodsStateEnum" jdbcType="VARCHAR" />
+      <result column="type" property="type" javaType="net.seocoo.ggys.module.goods.constans.GoodsTypeEnum" jdbcType="VARCHAR" />
+      <result column="audit_user_id" property="auditUserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="audit_date"  property="auditDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="audit_result" property="auditResult" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="small_img_url" property="smallImgUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="first_large_img_url" property="firstLargeImgUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="second_large_img_url" property="secondLargeImgUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="third_large_img_url" property="thirdLargeImgUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="sort_number" property="sortNumber" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="current_price" property="currentPrice" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result column="original_price" property="originalPrice" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result column="remark" property="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="min_price" property="minPrice" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+
+      <result column="need_book" property="needBook" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+      <result column="merchant_take_out_type_id" property="merchantTakeOutTypeId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+
+      <result column="can_display" property="canDisplay" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+      <result column="create_date" property="createDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="create_user_id" property="createUserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="update_date"  property="updateDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="update_user_id" property="updateUserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="can_deleted" property="canDeleted" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, uuid, merchant_id, name, state, type,audit_user_id, audit_date, audit_result, small_img_url,
+    first_large_img_url, second_large_img_url, third_large_img_url, sort_number, current_price, 
+    original_price, remark, min_price, can_display,need_book, merchant_take_out_type_id,create_date, create_user_id, update_date,
+    update_user_id, can_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from merchant_base_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from merchant_base_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="net.seocoo.ggys.module.goods.entity.MerchantBaseGoodsDO">
+    insert into merchant_base_goods (id, uuid, merchant_id, 
+      name, state, type,audit_user_id,
+      audit_date, audit_result, small_img_url, 
+      first_large_img_url, second_large_img_url, third_large_img_url, 
+      sort_number, current_price, original_price, 
+      remark, min_price, can_display,
+      need_book,merchant_take_out_type_id,
+      create_date, create_user_id, update_date, 
+      update_user_id, can_deleted)
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=CHAR}, #{merchantId,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR}, #{auditUserId,jdbcType=INTEGER},
+      #{auditDate,jdbcType=TIMESTAMP}, #{auditResult,jdbcType=VARCHAR}, #{smallImgUrl,jdbcType=VARCHAR}, 
+      #{firstLargeImgUrl,jdbcType=VARCHAR}, #{secondLargeImgUrl,jdbcType=VARCHAR}, #{thirdLargeImgUrl,jdbcType=VARCHAR}, 
+      #{sortNumber,jdbcType=INTEGER}, #{currentPrice,jdbcType=DECIMAL}, #{originalPrice,jdbcType=DECIMAL}, 
+      #{remark,jdbcType=VARCHAR}, #{minPrice,jdbcType=DECIMAL}, #{canDisplay,jdbcType=VARCHAR},
+      #{needBook,jdbcType=VARCHAR},#{merchantTakeOutTypeId,jdbcType=INTEGER},
+      #{createDate,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{updateUserId,jdbcType=INTEGER}, #{canDeleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="net.seocoo.ggys.module.goods.entity.MerchantBaseGoodsDO">
+    insert into merchant_base_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="auditUserId != null">
+        audit_user_id,
+      </if>
+      <if test="auditDate != null">
+        audit_date,
+      </if>
+      <if test="auditResult != null">
+        audit_result,
+      </if>
+      <if test="smallImgUrl != null">
+        small_img_url,
+      </if>
+      <if test="firstLargeImgUrl != null">
+        first_large_img_url,
+      </if>
+      <if test="secondLargeImgUrl != null">
+        second_large_img_url,
+      </if>
+      <if test="thirdLargeImgUrl != null">
+        third_large_img_url,
+      </if>
+      <if test="sortNumber != null">
+        sort_number,
+      </if>
+      <if test="currentPrice != null">
+        current_price,
+      </if>
+      <if test="originalPrice != null">
+        original_price,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="minPrice != null">
+        min_price,
+      </if>
+      <if test="canDisplay != null">
+        can_display,
+      </if>
+
+      <if test="needBook != null">
+        need_book,
+      </if>
+      <if test="merchantTakeOutTypeId != null">
+        merchant_take_out_type_id,
+      </if>
+
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="auditUserId != null">
+        #{auditUserId,jdbcType=INTEGER},
+      </if>
+      <if test="auditDate != null">
+        #{auditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditResult != null">
+        #{auditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="smallImgUrl != null">
+        #{smallImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLargeImgUrl != null">
+        #{firstLargeImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLargeImgUrl != null">
+        #{secondLargeImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdLargeImgUrl != null">
+        #{thirdLargeImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNumber != null">
+        #{sortNumber,jdbcType=INTEGER},
+      </if>
+      <if test="currentPrice != null">
+        #{currentPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="originalPrice != null">
+        #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="minPrice != null">
+        #{minPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="canDisplay != null">
+        #{canDisplay,jdbcType=VARCHAR},
+      </if>
+
+
+      <if test="needBook != null">
+        #{needBook,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantTakeOutTypeId != null">
+        #{merchantTakeOutTypeId,jdbcType=INTEGER},
+      </if>
+
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.goods.entity.MerchantBaseGoodsDO">
+    update merchant_base_goods
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="auditUserId != null">
+        audit_user_id = #{auditUserId,jdbcType=INTEGER},
+      </if>
+      <if test="auditDate != null">
+        audit_date = #{auditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditResult != null">
+        audit_result = #{auditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="smallImgUrl != null">
+        small_img_url = #{smallImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLargeImgUrl != null">
+        first_large_img_url = #{firstLargeImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLargeImgUrl != null">
+        second_large_img_url = #{secondLargeImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdLargeImgUrl != null">
+        third_large_img_url = #{thirdLargeImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNumber != null">
+        sort_number = #{sortNumber,jdbcType=INTEGER},
+      </if>
+      <if test="currentPrice != null">
+        current_price = #{currentPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="originalPrice != null">
+        original_price = #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="minPrice != null">
+        min_price = #{minPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="canDisplay != null">
+        can_display = #{canDisplay,jdbcType=VARCHAR},
+      </if>
+
+      <if test="needBook != null">
+        need_book = #{needBook,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantTakeOutTypeId != null">
+        merchant_take_out_type_id = #{merchantTakeOutTypeId,jdbcType=INTEGER},
+      </if>
+
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.goods.entity.MerchantBaseGoodsDO">
+    update merchant_base_goods
+    set uuid = #{uuid,jdbcType=CHAR},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      audit_user_id = #{auditUserId,jdbcType=INTEGER},
+      audit_date = #{auditDate,jdbcType=TIMESTAMP},
+      audit_result = #{auditResult,jdbcType=VARCHAR},
+      small_img_url = #{smallImgUrl,jdbcType=VARCHAR},
+      first_large_img_url = #{firstLargeImgUrl,jdbcType=VARCHAR},
+      second_large_img_url = #{secondLargeImgUrl,jdbcType=VARCHAR},
+      third_large_img_url = #{thirdLargeImgUrl,jdbcType=VARCHAR},
+      sort_number = #{sortNumber,jdbcType=INTEGER},
+      current_price = #{currentPrice,jdbcType=DECIMAL},
+      original_price = #{originalPrice,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      min_price = #{minPrice,jdbcType=DECIMAL},
+      can_display = #{canDisplay,jdbcType=VARCHAR},
+      need_book  =#{needBook,jdbcType=VARCHAR},
+      merchant_take_out_type_id =#{merchantTakeOutTypeId,jdbcType=INTEGER}
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=INTEGER},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <!--自定义sql-->
+  <delete id="delete" parameterType="java.lang.Integer">
+    update  merchant_base_goods
+    set can_deleted = 'Y'
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <select id="list" parameterType="net.seocoo.ggys.core.base.BaseQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from merchant_base_goods
+    <include refid="Base_Where" />
+
+  </select>
+
+  <select id="count" parameterType="net.seocoo.ggys.core.base.BaseQuery" resultType="java.lang.Integer">
+    select count(*)
+    from merchant_base_goods
+    <include refid="Base_Where"/>
+  </select>
+
+
+  <select id="selectMinPrice" parameterType="java.lang.Integer" resultType="java.math.BigDecimal">
+    select min(current_price)
+    from merchant_base_goods
+    where merchant_id = #{merchantId,jdbcType=INTEGER}
+  </select>
+
+
+    <sql id="Base_Where">
+    where 1=1 and can_deleted = 'N'
+    <if test="id != null">
+      and  id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="uuid != null">
+      and  uuid = #{uuid,jdbcType=CHAR}
+    </if>
+    <if test="merchantId != null">
+      and merchant_id = #{merchantId,jdbcType=INTEGER}
+    </if>
+    <if test="name != null">
+      and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="state != null">
+      and state = #{state,jdbcType=VARCHAR}
+    </if>
+    <if test="type != null">
+      and type = #{type,jdbcType=VARCHAR}
+    </if>
+    <if test="startDate !=null ">
+      and  <![CDATA[ create_date >= #{startDate,jdbcType=TIMESTAMP}  ]]>
+    </if>
+    <if test="endDate != null">
+      and  <![CDATA[ create_date <= #{endDate,jdbcType=TIMESTAMP}  ]]>
+    </if>
+    <if test="merchandIdList !=null and merchandIdList.size()>0">
+      and  merchant_id in <foreach collection="merchandIdList" item="merchantId" open="(" separator="," close=")">
+        #{merchantId}
+      </foreach>
+    </if>
+
+  </sql>
+</mapper>

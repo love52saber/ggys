@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.evaluate.mapper.OrderEvaluateMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.evaluate.entity.OrderEvaluateDO">
+      <id property="id" column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="uuid" column="uuid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="userId" column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="merchantId" column="merchant_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="orderId" column="order_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="orderNo" column="order_no" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="orderType" column="order_type" javaType="net.seocoo.ggys.module.order.constants.OrderTypeEnum" jdbcType="VARCHAR" />
+      <result property="evaluateResult" column="evaluate_result" javaType="net.seocoo.ggys.module.evaluate.constants.OrderEvaluateResultEnum" jdbcType="VARCHAR" />
+      <result property="content" column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="createDate" column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result property="updateDate" column="update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result property="canDeleted" column="can_deleted" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uuid, user_id, merchant_id, order_id, order_no, order_type, evaluate_result, content, create_date,
+    update_date, can_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_evaluate
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order_evaluate
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.seocoo.ggys.module.evaluate.entity.OrderEvaluateDO">
+    insert into order_evaluate (id, uuid, user_id, 
+      merchant_id, order_id, order_no, order_type, evaluate_result,
+      content, create_date, update_date, 
+      can_deleted)
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{merchantId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR},
+      #{orderType,jdbcType=VARCHAR}, #{evaluateResult,jdbcType=VARCHAR},
+      #{content,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{canDeleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.seocoo.ggys.module.evaluate.entity.OrderEvaluateDO">
+    insert into order_evaluate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="orderType != null">
+        order_type,
+      </if>
+      <if test="evaluateResult != null">
+        evaluate_result,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateResult != null">
+        #{evaluateResult,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.evaluate.entity.OrderEvaluateDO">
+    update order_evaluate
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        order_type = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateResult != null">
+        evaluate_result = #{evaluateResult,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.evaluate.entity.OrderEvaluateDO">
+    update order_evaluate
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=VARCHAR},
+      evaluate_result = #{evaluateResult,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--自定义-->
+  <!--分页查询-->
+  <select id="listByPageQuery" parameterType="net.seocoo.ggys.module.evaluate.query.OrderEvaluateQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_evaluate
+    <include refid="Base_Where"/>
+    <if test="orderBy != null and orderBy != ''">
+      order by ${orderBy}
+    </if>
+  </select>
+
+  <!--总数-->
+  <select id="countByQuery" parameterType="net.seocoo.ggys.module.evaluate.query.OrderEvaluateQuery" resultType="Integer">
+    select count(*) from order_evaluate
+    <include refid="Base_Where"/>
+  </select>
+
+  <sql id="Base_Where">
+    where 1=1 and can_deleted = 'N'
+    <if test="id != null">
+      and  id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="uuid != null">
+      and  uuid = #{uuid,jdbcType=VARCHAR}
+    </if>
+    <if test="merchantId != null">
+      and  merchant_id = #{merchantId,jdbcType=INTEGER}
+    </if>
+    <if test="orderId != null">
+      and  order_id = #{orderId,jdbcType=INTEGER}
+    </if>
+    <if test="orderNo != null">
+      and  order_no like "%"#{orderNo,jdbcType=VARCHAR}"%"
+    </if>
+    <if test="orderType != null">
+      and  order_type = #{orderType,jdbcType=VARCHAR}
+    </if>
+    <if test="evaluateResult != null">
+      and  evaluate_result = #{evaluateResult,jdbcType=VARCHAR}
+    </if>
+    <if test="startDate !=null ">
+      and  <![CDATA[ create_date >= #{startDate,jdbcType=TIMESTAMP}  ]]>
+    </if>
+    <if test="endDate != null">
+      and  <![CDATA[ create_date <= #{endDate,jdbcType=TIMESTAMP}  ]]>
+    </if>
+  </sql>
+
+</mapper>

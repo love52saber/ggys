@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.member.mapper.MemberCardConsumeRecordMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.member.entity.MemberCardConsumeRecordDO">
+      <id property="id" column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="uuid" column="uuid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="merchantId" column="merchant_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="userId" column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="memberCardId" column="member_card_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="orderId" column="order_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="consumeMoney" column="consume_money" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result property="remainingMoney" column="remaining_money" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result property="consumeDate" column="consume_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result property="canDeleted" column="can_deleted" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uuid, merchant_id, user_id, member_card_id, order_id, consume_money, remaining_money, 
+    consume_date, can_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member_card_consume_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member_card_consume_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.seocoo.ggys.module.member.entity.MemberCardConsumeRecordDO">
+    insert into member_card_consume_record (id, uuid, merchant_id, 
+      user_id, member_card_id, order_id, 
+      consume_money, remaining_money, consume_date, 
+      can_deleted)
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{merchantId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{memberCardId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, 
+      #{consumeMoney,jdbcType=DECIMAL}, #{remainingMoney,jdbcType=DECIMAL}, #{consumeDate,jdbcType=TIMESTAMP}, 
+      #{canDeleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.seocoo.ggys.module.member.entity.MemberCardConsumeRecordDO">
+    insert into member_card_consume_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="memberCardId != null">
+        member_card_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="consumeMoney != null">
+        consume_money,
+      </if>
+      <if test="remainingMoney != null">
+        remaining_money,
+      </if>
+      <if test="consumeDate != null">
+        consume_date,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="memberCardId != null">
+        #{memberCardId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="consumeMoney != null">
+        #{consumeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="remainingMoney != null">
+        #{remainingMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeDate != null">
+        #{consumeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.member.entity.MemberCardConsumeRecordDO">
+    update member_card_consume_record
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="memberCardId != null">
+        member_card_id = #{memberCardId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="consumeMoney != null">
+        consume_money = #{consumeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="remainingMoney != null">
+        remaining_money = #{remainingMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeDate != null">
+        consume_date = #{consumeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.member.entity.MemberCardConsumeRecordDO">
+    update member_card_consume_record
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      member_card_id = #{memberCardId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      consume_money = #{consumeMoney,jdbcType=DECIMAL},
+      remaining_money = #{remainingMoney,jdbcType=DECIMAL},
+      consume_date = #{consumeDate,jdbcType=TIMESTAMP},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--分页查询 -->
+  <select id="listByPageQuery" parameterType="net.seocoo.ggys.module.member.query.MemberCardConsumeRecordQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from member_card_consume_record
+    where can_deleted = 'N'
+    <if test="userId != null">
+      and user_id = #{userId}
+    </if>
+    <if test="merchantId != null">
+      and merchant_id = #{merchantId}
+    </if>
+    <if test="orderBy != null and orderBy != ''">
+      order by ${orderBy}
+    </if>
+  </select>
+
+  <!--总数-->
+  <select id="countByQuery" parameterType="net.seocoo.ggys.module.member.query.MemberCardConsumeRecordQuery" resultType="java.lang.Integer">
+    select count(*) from member_card_consume_record
+    where can_deleted = 'N'
+    <if test="userId != null">
+      and user_id = #{userId}
+    </if>
+    <if test="merchantId != null">
+      and merchant_id = #{merchantId}
+    </if>
+  </select>
+
+  <!--根据userId分页查询，并根据merchantId分组 -->
+  <select id="listByPageQueryGroupByMerchantId" parameterType="net.seocoo.ggys.module.member.query.MemberCardConsumeRecordQuery" resultMap="BaseResultMap">
+    select
+    DISTINCT (merchant_id)
+    from member_card_consume_record
+    where can_deleted = 'N'
+    <if test="userId != null">
+      and user_id = #{userId}
+    </if>
+    <if test="orderBy != null and orderBy != ''">
+      order by ${orderBy}
+    </if>
+  </select>
+
+  <!--根据userId查询，并根据merchantId分组的总数 -->
+  <select id="countByPageQueryGroupByMerchantId" parameterType="net.seocoo.ggys.module.member.query.MemberCardConsumeRecordQuery" resultType="java.lang.Integer">
+    select
+    count(DISTINCT (merchant_id))
+    from member_card_consume_record
+    where can_deleted = 'N'
+    <if test="userId != null">
+      and user_id = #{userId}
+    </if>
+  </select>
+</mapper>

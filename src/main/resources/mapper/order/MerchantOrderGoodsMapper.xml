@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.order.mapper.MerchantOrderGoodsMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.order.entity.MerchantOrderGoodsDO">
+      <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="order_id" property="orderId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="goods_id" property="goodsId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="uuid" property="uuid" javaType="java.lang.String" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_id, goods_id, uuid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from merchant_order_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from merchant_order_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.seocoo.ggys.module.order.entity.MerchantOrderGoodsDO">
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into merchant_order_goods (id, order_id, goods_id,
+      uuid)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{uuid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.seocoo.ggys.module.order.entity.MerchantOrderGoodsDO">
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into merchant_order_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.order.entity.MerchantOrderGoodsDO">
+    update merchant_order_goods
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.order.entity.MerchantOrderGoodsDO">
+    update merchant_order_goods
+    set order_id = #{orderId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      uuid = #{uuid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--自定义SQL-->
+  <select id="listByQuery" parameterType="net.seocoo.ggys.module.order.entity.MerchantOrderGoodsDO" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> FROM merchant_order_goods
+    <where>
+      <if test="orderId != null">
+        order_id = #{orderId}
+      </if>
+      <if test="goodsId != null">
+        and goods_id = #{goodsId}
+      </if>
+    </where>
+  </select>
+
+  <select id="countByQuery" parameterType="net.seocoo.ggys.module.order.entity.MerchantOrderGoodsDO" resultType="java.lang.Integer">
+    select count(*) FROM merchant_order_goods
+    <where>
+      <if test="orderId != null">
+        order_id = #{orderId}
+      </if>
+      <if test="goodsId != null">
+        and goods_id = #{goodsId}
+      </if>
+    </where>
+  </select>
+</mapper>

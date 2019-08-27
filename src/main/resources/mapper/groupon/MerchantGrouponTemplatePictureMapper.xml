@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.groupon.mapper.MerchantGrouponTemplatePictureMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.groupon.entity.MerchantGrouponTemplatePictureDO">
+      <id column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="uuid" javaType="java.lang.String" jdbcType="CHAR" />
+      <result column="pic_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="img_path" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="merchant_groupon_template_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="create_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="update_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="can_deleted" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uuid, pic_type, img_path, merchant_groupon_template_id, create_date, create_user_id, 
+    update_date, update_user_id, can_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from merchant_groupon_template_picture
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from merchant_groupon_template_picture
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.seocoo.ggys.module.groupon.entity.MerchantGrouponTemplatePictureDO">
+    insert into merchant_groupon_template_picture (id, uuid, pic_type, 
+      img_path, merchant_groupon_template_id, create_date, 
+      create_user_id, update_date, update_user_id, 
+      can_deleted)
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=CHAR}, #{picType,jdbcType=VARCHAR}, 
+      #{imgPath,jdbcType=VARCHAR}, #{merchantGrouponTemplateId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{createUserId,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=INTEGER}, 
+      #{canDeleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.seocoo.ggys.module.groupon.entity.MerchantGrouponTemplatePictureDO">
+    insert into merchant_groupon_template_picture
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="picType != null">
+        pic_type,
+      </if>
+      <if test="imgPath != null">
+        img_path,
+      </if>
+      <if test="merchantGrouponTemplateId != null">
+        merchant_groupon_template_id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="picType != null">
+        #{picType,jdbcType=VARCHAR},
+      </if>
+      <if test="imgPath != null">
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantGrouponTemplateId != null">
+        #{merchantGrouponTemplateId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.groupon.entity.MerchantGrouponTemplatePictureDO">
+    update merchant_groupon_template_picture
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="picType != null">
+        pic_type = #{picType,jdbcType=VARCHAR},
+      </if>
+      <if test="imgPath != null">
+        img_path = #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantGrouponTemplateId != null">
+        merchant_groupon_template_id = #{merchantGrouponTemplateId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.groupon.entity.MerchantGrouponTemplatePictureDO">
+    update merchant_groupon_template_picture
+    set uuid = #{uuid,jdbcType=CHAR},
+      pic_type = #{picType,jdbcType=VARCHAR},
+      img_path = #{imgPath,jdbcType=VARCHAR},
+      merchant_groupon_template_id = #{merchantGrouponTemplateId,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=INTEGER},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--自定义sql-->
+  <delete id="delete" parameterType="java.lang.Integer">
+    update  merchant_groupon_template_picture
+    set can_deleted = 'Y'
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <select id="list" parameterType="net.seocoo.ggys.core.base.BaseQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from merchant_groupon_template_picture
+    <include refid="Base_Where" />
+
+  </select>
+
+  <select id="count" parameterType="net.seocoo.ggys.core.base.BaseQuery" resultType="java.lang.Integer">
+    select count(*)
+    from merchant_groupon_template_picture
+    <include refid="Base_Where"/>
+  </select>
+
+
+
+  <sql id="Base_Where">
+    where 1=1 and can_deleted = 'N'
+    <if test="id != null">
+      and  id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="uuid != null">
+      and  uuid = #{uuid,jdbcType=CHAR}
+    </if>
+    <if test="merchantGrouponTemplateId != null">
+      and merchant_groupon_template_id = #{merchantGrouponTemplateId,jdbcType=INTEGER}
+    </if>
+  </sql>
+</mapper>

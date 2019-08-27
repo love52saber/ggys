@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.member.mapper.MemberCardRechargeRuleMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.member.entity.MemberCardRechargeRuleDO">
+      <id property="id" column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="uuid" column="uuid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="merchantId" column="merchant_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="rechargeMoney" column="recharge_money" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result property="giftMoney" column="gift_money" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result property="sortNumber" column="sort_number" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="createUserId" column="create_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="updateUserId" column="update_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="createDate" column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result property="updateDate" column="update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result property="canDeleted" column="can_deleted" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uuid, merchant_id, recharge_money, gift_money, sort_number, create_user_id, update_user_id, 
+    create_date, update_date, can_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member_card_recharge_rule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member_card_recharge_rule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.seocoo.ggys.module.member.entity.MemberCardRechargeRuleDO">
+    insert into member_card_recharge_rule (id, uuid, merchant_id, 
+      recharge_money, gift_money, sort_number, 
+      create_user_id, update_user_id, create_date, 
+      update_date, can_deleted)
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{merchantId,jdbcType=INTEGER}, 
+      #{rechargeMoney,jdbcType=DECIMAL}, #{giftMoney,jdbcType=DECIMAL}, #{sortNumber,jdbcType=INTEGER}, 
+      #{createUserId,jdbcType=INTEGER}, #{updateUserId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{canDeleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.seocoo.ggys.module.member.entity.MemberCardRechargeRuleDO">
+    insert into member_card_recharge_rule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="rechargeMoney != null">
+        recharge_money,
+      </if>
+      <if test="giftMoney != null">
+        gift_money,
+      </if>
+      <if test="sortNumber != null">
+        sort_number,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeMoney != null">
+        #{rechargeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="giftMoney != null">
+        #{giftMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="sortNumber != null">
+        #{sortNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.member.entity.MemberCardRechargeRuleDO">
+    update member_card_recharge_rule
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeMoney != null">
+        recharge_money = #{rechargeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="giftMoney != null">
+        gift_money = #{giftMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="sortNumber != null">
+        sort_number = #{sortNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.member.entity.MemberCardRechargeRuleDO">
+    update member_card_recharge_rule
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      recharge_money = #{rechargeMoney,jdbcType=DECIMAL},
+      gift_money = #{giftMoney,jdbcType=DECIMAL},
+      sort_number = #{sortNumber,jdbcType=INTEGER},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      update_user_id = #{updateUserId,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--分页查询 -->
+  <select id="listByPageQuery" parameterType="net.seocoo.ggys.module.member.query.MemberCardRechargeRuleQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from member_card_recharge_rule
+    where can_deleted = 'N'
+    <if test="merchantId != null">
+      and merchant_id = #{merchantId}
+    </if>
+    order by ${orderBy}
+  </select>
+
+  <!--总数-->
+  <select id="countByQuery" parameterType="net.seocoo.ggys.module.member.query.MemberCardRechargeRuleQuery" resultType="java.lang.Integer">
+    select count(*) from member_card_recharge_rule
+    where can_deleted = 'N'
+    <if test="merchantId != null">
+      and merchant_id = #{merchantId}
+    </if>
+  </select>
+
+  <!--查询哪些商家有会员卡充值-->
+  <select id="listMemberCardRechargeRuleByDistinct" parameterType="net.seocoo.ggys.core.base.BaseQuery" resultMap="BaseResultMap">
+    select
+    DISTINCT (merchant_id)
+    from member_card_recharge_rule
+    where can_deleted = 'N'
+    <if test="userId != null">
+      and merchant_id not in
+      (SELECT merchant_id from member_card_info WHERE user_id=#{userId} AND can_deleted='N')
+    </if>
+  </select>
+</mapper>

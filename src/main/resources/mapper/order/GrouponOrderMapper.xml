@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.order.mapper.GrouponOrderMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.order.entity.GrouponOrderDO">
+      <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="order_count" property="orderCount" javaType="java.lang.Short" jdbcType="SMALLINT" />
+      <result column="book_start_date" property="bookStartDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="book_end_date" property="bookEndDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="link_full_name" property="linkFullName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="link_phone" property="linkPhone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="uuid" property="uuid" javaType="java.lang.String" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_count, book_start_date, book_end_date, link_full_name, link_phone, uuid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from groupon_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from groupon_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="net.seocoo.ggys.module.order.entity.GrouponOrderDO">
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into groupon_order (id, order_count, book_start_date,
+      book_end_date, link_full_name, link_phone, 
+      uuid)
+    values (#{id,jdbcType=INTEGER}, #{orderCount,jdbcType=SMALLINT}, #{bookStartDate,jdbcType=TIMESTAMP}, 
+      #{bookEndDate,jdbcType=TIMESTAMP}, #{linkFullName,jdbcType=VARCHAR}, #{linkPhone,jdbcType=VARCHAR}, 
+      #{uuid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="net.seocoo.ggys.module.order.entity.GrouponOrderDO">
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      select last_insert_id()
+    </selectKey>
+    insert into groupon_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderCount != null">
+        order_count,
+      </if>
+      <if test="bookStartDate != null">
+        book_start_date,
+      </if>
+      <if test="bookEndDate != null">
+        book_end_date,
+      </if>
+      <if test="linkFullName != null">
+        link_full_name,
+      </if>
+      <if test="linkPhone != null">
+        link_phone,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderCount != null">
+        #{orderCount,jdbcType=SMALLINT},
+      </if>
+      <if test="bookStartDate != null">
+        #{bookStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookEndDate != null">
+        #{bookEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="linkFullName != null">
+        #{linkFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null">
+        #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.order.entity.GrouponOrderDO">
+    update groupon_order
+    <set>
+      <if test="orderCount != null">
+        order_count = #{orderCount,jdbcType=SMALLINT},
+      </if>
+      <if test="bookStartDate != null">
+        book_start_date = #{bookStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookEndDate != null">
+        book_end_date = #{bookEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="linkFullName != null">
+        link_full_name = #{linkFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null">
+        link_phone = #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.order.entity.GrouponOrderDO">
+    update groupon_order
+    set order_count = #{orderCount,jdbcType=SMALLINT},
+      book_start_date = #{bookStartDate,jdbcType=TIMESTAMP},
+      book_end_date = #{bookEndDate,jdbcType=TIMESTAMP},
+      link_full_name = #{linkFullName,jdbcType=VARCHAR},
+      link_phone = #{linkPhone,jdbcType=VARCHAR},
+      uuid = #{uuid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

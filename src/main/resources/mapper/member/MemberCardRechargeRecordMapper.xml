@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seocoo.ggys.module.member.mapper.MemberCardRechargeRecordMapper">
+  <resultMap id="BaseResultMap" type="net.seocoo.ggys.module.member.entity.MemberCardRechargeRecordDO">
+      <id property="id" column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="uuid" column="uuid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="merchantId" column="merchant_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="userId" column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="memberCardId" column="member_card_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result property="transactionNo" column="transaction_no" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result property="rechargeMoney" column="recharge_money" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result property="giftMoney" column="gift_money" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result property="rechargeTotalMoney" column="recharge_total_money" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result property="remainingMoney" column="remaining_money" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result property="rechargeDate" column="recharge_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result property="payType" column="pay_type" javaType="net.seocoo.ggys.core.constants.PayTypeEnum" jdbcType="VARCHAR" />
+      <result property="createDate" column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result property="canDeleted" column="can_deleted" javaType="net.seocoo.ggys.core.constants.YesNoEnum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uuid, merchant_id, user_id, member_card_id, transaction_no, recharge_money, gift_money, 
+    recharge_total_money, remaining_money, recharge_date, pay_type, create_date,
+    can_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member_card_recharge_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member_card_recharge_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.seocoo.ggys.module.member.entity.MemberCardRechargeRecordDO">
+    insert into member_card_recharge_record (id, uuid, merchant_id, 
+      user_id, member_card_id, transaction_no, 
+      recharge_money, gift_money, recharge_total_money, 
+      remaining_money, recharge_date, pay_type, create_date, can_deleted
+      )
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{merchantId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{memberCardId,jdbcType=INTEGER}, #{transactionNo,jdbcType=VARCHAR}, 
+      #{rechargeMoney,jdbcType=DECIMAL}, #{giftMoney,jdbcType=DECIMAL}, #{rechargeTotalMoney,jdbcType=DECIMAL}, 
+      #{remainingMoney,jdbcType=DECIMAL}, #{rechargeDate,jdbcType=TIMESTAMP},
+      #{payType,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{canDeleted,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.seocoo.ggys.module.member.entity.MemberCardRechargeRecordDO">
+    insert into member_card_recharge_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="memberCardId != null">
+        member_card_id,
+      </if>
+      <if test="transactionNo != null">
+        transaction_no,
+      </if>
+      <if test="rechargeMoney != null">
+        recharge_money,
+      </if>
+      <if test="giftMoney != null">
+        gift_money,
+      </if>
+      <if test="rechargeTotalMoney != null">
+        recharge_total_money,
+      </if>
+      <if test="remainingMoney != null">
+        remaining_money,
+      </if>
+      <if test="rechargeDate != null">
+        recharge_date,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="canDeleted != null">
+        can_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="memberCardId != null">
+        #{memberCardId,jdbcType=INTEGER},
+      </if>
+      <if test="transactionNo != null">
+        #{transactionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeMoney != null">
+        #{rechargeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="giftMoney != null">
+        #{giftMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="rechargeTotalMoney != null">
+        #{rechargeTotalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="remainingMoney != null">
+        #{remainingMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="rechargeDate != null">
+        #{rechargeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canDeleted != null">
+        #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.seocoo.ggys.module.member.entity.MemberCardRechargeRecordDO">
+    update member_card_recharge_record
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="memberCardId != null">
+        member_card_id = #{memberCardId,jdbcType=INTEGER},
+      </if>
+      <if test="transactionNo != null">
+        transaction_no = #{transactionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeMoney != null">
+        recharge_money = #{rechargeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="giftMoney != null">
+        gift_money = #{giftMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="rechargeTotalMoney != null">
+        recharge_total_money = #{rechargeTotalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="remainingMoney != null">
+        remaining_money = #{remainingMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="rechargeDate != null">
+        recharge_date = #{rechargeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canDeleted != null">
+        can_deleted = #{canDeleted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.seocoo.ggys.module.member.entity.MemberCardRechargeRecordDO">
+    update member_card_recharge_record
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      member_card_id = #{memberCardId,jdbcType=INTEGER},
+      transaction_no = #{transactionNo,jdbcType=VARCHAR},
+      recharge_money = #{rechargeMoney,jdbcType=DECIMAL},
+      gift_money = #{giftMoney,jdbcType=DECIMAL},
+      recharge_total_money = #{rechargeTotalMoney,jdbcType=DECIMAL},
+      remaining_money = #{remainingMoney,jdbcType=DECIMAL},
+      recharge_date = #{rechargeDate,jdbcType=TIMESTAMP},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      can_deleted = #{canDeleted,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--分页查询 -->
+  <select id="listByPageQuery" parameterType="net.seocoo.ggys.module.member.query.MemberCardRechargeRecordQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from member_card_recharge_record
+    where can_deleted = 'N'
+    <if test="merchantId != null">
+      and merchant_id = #{merchantId}
+    </if>
+    <if test="userId != null">
+      and user_id = #{userId}
+    </if>
+    <if test="orderBy != null and orderBy != ''">
+      order by ${orderBy}
+    </if>
+  </select>
+
+  <!--总数-->
+  <select id="countByQuery" parameterType="net.seocoo.ggys.module.member.query.MemberCardRechargeRuleQuery" resultType="java.lang.Integer">
+    select count(*) from member_card_recharge_record
+    where can_deleted = 'N'
+    <if test="merchantId != null">
+      and merchant_id = #{merchantId}
+    </if>
+    <if test="userId != null">
+      and user_id = #{userId}
+    </if>
+  </select>
+
+  <!--查询新增储值-->
+  <select id="getAddRechargeTotalMoney" parameterType="net.seocoo.ggys.module.member.query.MemberCardRechargeRuleQuery" resultType="java.math.BigDecimal">
+    select sum(recharge_money) from member_card_recharge_record
+    <where>
+      <if test="merchantId != null">
+        and merchant_id = #{merchantId}
+      </if>
+      <if test="startDate != null and endDate != null">
+        and recharge_date BETWEEN
+        #{startDate,jdbcType=TIMESTAMP} AND
+        #{endDate,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+</mapper>
